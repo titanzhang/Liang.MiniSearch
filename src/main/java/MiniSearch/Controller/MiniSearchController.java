@@ -6,12 +6,16 @@
 package MiniSearch.Controller;
 
 import MiniSearch.Model.Index;
-import Search.Engine;
+import MiniSearch.Model.QueryDocument;
+import MiniSearch.Model.QueryResult;
+import Search.EngineManager;
+import java.io.IOException;
+import java.util.List;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 
 /**
  *
@@ -32,15 +36,34 @@ public class MiniSearchController {
         return index;
     }
 
-    @RequestMapping(value = "/parse/{url:.+}", method = RequestMethod.GET)
-    public String parseUrl(@PathVariable String url) {
+    @RequestMapping(value = "/update/{indexName}/{url:.+}", method = RequestMethod.GET, produces = "application/json")
+    public QueryResult indexUrl(@PathVariable String url, @PathVariable String indexName) {
+        QueryResult result = new QueryResult();
         try {
             PageDownloader page = new PageDownloader();
-            Engine indexer = new Engine();
-            int maxDoc = indexer.createIndex(url, page.get(url));
-            return String.valueOf(maxDoc);
+            int maxDoc = EngineManager.getEngine(indexName).createIndex(url, page.get(url));
+            result.setStatus(true);
+            result.setNumDocs(maxDoc);
         } catch(Exception e) {
-            return "-1";
+            result.setStatus(false);
+            result.setNumDocs(0);
         }
+        
+        return result;
+    }
+    
+    @RequestMapping(value = "/search/{indexName}/json/{queryString:.+}", method = RequestMethod.GET, produces = "application/json")
+    public QueryResult search(@PathVariable String indexName, @PathVariable String queryString) {
+        QueryResult result = new QueryResult();
+        try {
+            List<QueryDocument> docs = EngineManager.getEngine(indexName).search(queryString);
+            result.setStatus(true);
+            result.setDocuments(docs);
+            result.setNumDocs(docs.size());
+        } catch(IOException | ParseException ex) {
+            result.setStatus(false);
+            result.setNumDocs(0);
+        }
+        return result;
     }
 }

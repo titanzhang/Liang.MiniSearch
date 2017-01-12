@@ -14,20 +14,18 @@ import java.net.URL;
  * @author zhangliang
  */
 public class PageDownloader {
-    public String get(String url) {
+    public String get(String url) throws Exception {
+//        System.out.println(url);
         StringBuilder buf = new StringBuilder();
-        try {
-            URL http = new URL(url);
+        URL http = new URL(url);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(http.openStream(), "UTF-8"));
-            for (String line; (line = reader.readLine()) != null;) {
-                buf.append(line);
-                buf.append("\n");
-//                System.out.println(line);
-            }
-        } catch(Exception e) {
-            
+        BufferedReader reader = new BufferedReader(new InputStreamReader(http.openStream(), "UTF-8"));
+        for (String line; (line = reader.readLine()) != null;) {
+            buf.append(line);
+            buf.append("\n");
+//            System.out.println(line);
         }
+        reader.close();
         
         return buf.toString();
     }
