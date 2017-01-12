@@ -1,6 +1,6 @@
-## MiniSearch
 ![Apache Lucene](http://lucene.apache.org/images/lucene_logo_green_300.png)
 
+## MiniSearch
 A practice of building a very basic search engine with Lucene.
 
 ### Basic features include:
