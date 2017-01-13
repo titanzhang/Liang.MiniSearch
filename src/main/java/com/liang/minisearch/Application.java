@@ -1,9 +1,11 @@
+package com.liang.minisearch;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MiniSearch;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +19,7 @@ import org.springframework.web.util.UrlPathHelper;
  */
 @SpringBootApplication
 public class Application extends WebMvcConfigurerAdapter {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 //        System.setProperty("org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH", "true");
         SpringApplication.run(Application.class, args);
     }

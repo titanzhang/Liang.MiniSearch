@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MiniSearch.Controller;
+package com.liang.minisearch.controller;
 
-import MiniSearch.Model.Index;
-import MiniSearch.Model.QueryDocument;
-import MiniSearch.Model.QueryResult;
-import Search.EngineManager;
+import com.liang.minisearch.domain.network.PageDownloader;
+import com.liang.minisearch.model.Index;
+import com.liang.minisearch.model.QueryDocument;
+import com.liang.minisearch.model.QueryResult;
+import com.liang.minisearch.domain.search.EngineManager;
 import java.io.IOException;
 import java.util.List;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -22,12 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @author zhangliang
  */
 @RestController
-public class MiniSearchController {
+public class ResponseController {
     
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getIndex() {
-        return "Hello world!";
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public String getIndex() {
+//        return "Hello world";
+//    }
     
     @RequestMapping(value = "/json", method = RequestMethod.GET, produces = "application/json")
     public Index getIndexJson() {

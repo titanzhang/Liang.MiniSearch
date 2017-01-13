@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Search;
+package com.liang.minisearch.domain.search;
 
 import java.util.HashMap;
 import java.util.Map;

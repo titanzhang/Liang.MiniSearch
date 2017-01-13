@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Search;
+package com.liang.minisearch.domain.search;
 
-import MiniSearch.Model.QueryDocument;
+import com.liang.minisearch.model.QueryDocument;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
